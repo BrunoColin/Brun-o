@@ -2,9 +2,12 @@ package exercicio3;
 
 import static org.junit.Assert.*;
 
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
+import org.joda.time.Period;
 import org.junit.Test;
 
 public class Exercicio3 {
@@ -119,5 +122,31 @@ public class Exercicio3 {
 		assertEquals(999, horario.minusMillis(1).getMillisOfSecond());
 		
 	}
+	
+	@Test 
+	public void verificarHorario() throws Exception {
+		
+		LocalTime MeiaNoite = new LocalTime(0, 0, 0, 0);
+		LocalTime MeiaNoiteMenos1 = new LocalTime(23, 59, 59, 999);
+		
+		boolean antes = MeiaNoite.isBefore(MeiaNoiteMenos1);
+		
+		assertEquals(true, antes);
+		
+	}
+
+	@Test 
+	public void contarHoras() throws Exception {
+		
+		DateTime trintaEUmDeMarco = new DateTime(2017, 3, 31, 18, 30);
+		DateTime seisDeMaio = new DateTime(2017, 5, 6, 18, 30);
+		
+		Interval intervaloDia = new Interval(trintaEUmDeMarco, seisDeMaio);
+		Period periodo = new Period(intervaloDia.toDurationMillis());
+		
+		assertEquals(864, periodo.getHours());
+		
+	}
+	
 	
 }
