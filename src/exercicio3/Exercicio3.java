@@ -103,9 +103,21 @@ public class Exercicio3 {
 		//data = data.plusDays(1);
 		
 		//System.out.println(data);
-		
+		assertEquals(2017,  data.plusDays(1).getYear());
 		assertEquals(3,  data.plusDays(1).getMonthOfYear());
 		assertEquals(1,  data.plusDays(1).getDayOfMonth());
+	}
+	
+	@Test 
+	public void subtrairMileSegundoMeiaNoite() throws Exception {
+		
+		LocalTime horario = new LocalTime(0, 0, 0, 0);
+		
+		assertEquals(23, horario.minusMillis(1).getHourOfDay());
+		assertEquals(59, horario.minusMillis(1).getMinuteOfHour());
+		assertEquals(59, horario.minusMillis(1).getSecondOfMinute());
+		assertEquals(999, horario.minusMillis(1).getMillisOfSecond());
+		
 	}
 	
 }
