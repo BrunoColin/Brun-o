@@ -10,18 +10,33 @@ import br.ufsc.ine.leb.sistemaBancario.SistemaBancario;
 
 public class Auxiliar {
 	
-	public static void configuracoes(){
+	public static SistemaBancario sistemaBancario(){
 		
 		SistemaBancario sistemaBancario = new SistemaBancario();
-		Banco bancoDoBrasil = sistemaBancario.criarBanco("Banco do Brasil", Moeda.BRL);
-		Agencia agenciaCentro = bancoDoBrasil.criarAgencia("Centro");
-		Conta contaMaria = agenciaCentro.criarConta("Maria");
+		return sistemaBancario;
+	}
+	
+	public static Banco bancoDoBrasil(SistemaBancario sistemaBancario){
 		
-		//depositar
+		return sistemaBancario.criarBanco("Banco do Brasil", Moeda.BRL);
+	}
+	
+	public static Agencia agenciaCentro(Banco banco){
+	
+		return banco.criarAgencia("Centro");
+	
+	}
+			
+	public static Conta contaMaria(Agencia agencia){
+		
+		return agencia.criarConta("Maria");
+	}	
+	
+	public static void depositar(SistemaBancario sistemaBancario,Conta contaMaria){
+		
 		Dinheiro dinheiroMaria = new Dinheiro(Moeda.BRL, 10, 0);
 		
 		sistemaBancario.depositar(contaMaria,dinheiroMaria);
-		
 		
 	}
 	
